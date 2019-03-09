@@ -34,9 +34,9 @@ RUN apk add --repository http://dl-cdn.alpinelinux.org/alpine/edge/main/ --no-ca
   nodejs-npm
 COPY --from=dependencies /usr/lib/node_modules/java /usr/lib/node_modules/java
 
-ADD https://svwh.dl.sourceforge.net/project/jasperreports/jasperreports/JasperReports%206.2.0/jasperreports-6.2.0-project.tar.gz ./
-RUN tar -xzf jasperreports-6.2.0-project.tar.gz \
-    && rm jasperreports-6.2.0-project.tar.gz \
+RUN wget -O jasperreports-6.2.0-project.tar.gz https://svwh.dl.sourceforge.net/project/jasperreports/jasperreports/JasperReports%206.2.0/jasperreports-6.2.0-project.tar.gz \
+  && tar -xzf jasperreports-6.2.0-project.tar.gz \
+  && rm jasperreports-6.2.0-project.tar.gz \
 	&& cd jasperreports-6.2.0 \
 	&& rm -rf web test src docs demo build .settings tests dist/docs \
 	&& rm ThirdPartySoftwareNotices.txt ThirdPartySoftwareNotices.pdf readme.txt pom.xml license.txt changes.txt build.xml .project .gitignore .classpath ._.project
